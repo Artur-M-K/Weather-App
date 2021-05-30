@@ -1,11 +1,11 @@
 import React, {useEffect, useState} from 'react';
 import './App.css';
 
-import SearchResult from './SearchResult';
-import Weather from './Weather';
-import Search from './Search';
-import Choose from './Choose';
-import Error from './Error';
+import SearchResult from './components/SearchResult';
+import Weather from '.components/Weather';
+import Search from '.components/Search';
+import Choose from '.components/components/Choose';
+import Error from '.components/Error';
 
 function App() {
 
