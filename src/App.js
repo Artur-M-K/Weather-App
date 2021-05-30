@@ -16,23 +16,10 @@ function App() {
   const [isActive, setIsActive] = useState(false);
   const [isError, setIsError] = useState(false);
   const [error, setError] = useState();
-  // const [latPos, setLatPos] = useState();
-  // const [longPos, setLongPos] = useState();
-
+  
   let lat = 0;
   let long = 0;
   let city = '';
-
-  // useEffect(() => {
-  //   navigator.geolocation.getCurrentPosition((position)=> {
-  //     setLatPos(position.coords.latitude);
-  //     setLongPos(position.coords.longitude);
-
-  // })
-  
-  // },[]);
-    
-  
 
   useEffect(() => {
     const API = `https://api.climacell.co/v3/weather/nowcast?lat=${lat}&lon=${long}&unit_system=si&timestep=60&start_time=now&fields=cloud_cover&fields=precipitation&fields=weather_code&fields=baro_pressure&fields=wind_speed&fields=humidity&fields=temp&apikey=8BB99d2Fe9dpRTWhP16ayEEqZlWEQVQo`;
@@ -67,7 +54,6 @@ function App() {
 
   }, [cityData])
 
-  // console.log(latPos, longPos)
   const handleSubmit = () => {
     console.log(searchResult)
     if (searchResult === undefined || searchResult === '') {
@@ -79,7 +65,7 @@ function App() {
     }else{
       
       setIsError(false);
-      const API = `http://api.positionstack.com/v1/forward?access_key=5904a60050be0602ed8567eba311f76b
+      const API = `https://api.positionstack.com/v1/forward?access_key=5904a60050be0602ed8567eba311f76b
 &query=${searchResult}&limit=1`;
 
     fetch(API)
