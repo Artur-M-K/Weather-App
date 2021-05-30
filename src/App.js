@@ -2,10 +2,10 @@ import React, {useEffect, useState} from 'react';
 import './App.css';
 
 import SearchResult from './components/SearchResult';
-import Weather from '.components/Weather';
-import Search from '.components/Search';
-import Choose from '.components/components/Choose';
-import Error from '.components/Error';
+import Weather from './components/Weather';
+import Search from './components/Search';
+import Choose from './components/Choose';
+import Error from './components/Error';
 
 function App() {
 
@@ -16,13 +16,26 @@ function App() {
   const [isActive, setIsActive] = useState(false);
   const [isError, setIsError] = useState(false);
   const [error, setError] = useState();
+  const [latPos, setLatPos] = useState();
+  const [longPos, setLongPos] = useState();
 
-  let lat = 0;
-  let long = 0;
+  // let lat = 0;
+  // let long = 0;
   let city = '';
 
   useEffect(() => {
-    const API = `https://api.climacell.co/v3/weather/nowcast?lat=${lat}&lon=${long}&unit_system=si&timestep=60&start_time=now&fields=cloud_cover&fields=precipitation&fields=weather_code&fields=baro_pressure&fields=wind_speed&fields=humidity&fields=temp&apikey=8BB99d2Fe9dpRTWhP16ayEEqZlWEQVQo`;
+    navigator.geolocation.getCurrentPosition((position)=> {
+      setLatPos(position.coords.latitude);
+      setLongPos(position.coords.longitude);
+
+  })
+  
+  },[]);
+    
+  
+
+  useEffect(() => {
+    const API = `https://api.climacell.co/v3/weather/nowcast?lat=${latPos}&lon=${longPos}&unit_system=si&timestep=60&start_time=now&fields=cloud_cover&fields=precipitation&fields=weather_code&fields=baro_pressure&fields=wind_speed&fields=humidity&fields=temp&apikey=8BB99d2Fe9dpRTWhP16ayEEqZlWEQVQo`;
 
     fetch(API)
     .then(response => {
@@ -37,7 +50,7 @@ function App() {
       console.log(data)
     })
 
-    const DAILY = `https://api.climacell.co/v3/weather/forecast/daily?lat=${lat}&lon=${long}&unit_system=si&start_time=now&fields=temp&fields=precipitation&fields=precipitation_probability&fields=sunrise&fields=sunset&fields=weather_code&fields=wind_direction&apikey=8BB99d2Fe9dpRTWhP16ayEEqZlWEQVQo`;
+    const DAILY = `https://api.climacell.co/v3/weather/forecast/daily?lat=${latPos}&lon=${longPos}&unit_system=si&start_time=now&fields=temp&fields=precipitation&fields=precipitation_probability&fields=sunrise&fields=sunset&fields=weather_code&fields=wind_direction&apikey=8BB99d2Fe9dpRTWhP16ayEEqZlWEQVQo`;
 
     fetch(DAILY)
     .then(response => {
@@ -54,15 +67,13 @@ function App() {
 
   }, [cityData])
 
-  console.log(dailyWeather)
+  console.log(latPos, longPos)
   const handleSubmit = () => {
     console.log(searchResult)
     if (searchResult === undefined || searchResult === '') {
-      // alert("This field can't be empty!!! , please write a city name")
       setError("This field can't be empty!!! , please write a city name");
       setIsError(true);
     } else if (searchResult.toString().length < 3) {
-      // alert('write min 3 characters')
       setError('write min 3 characters');
       setIsError(true);
     }else{
@@ -97,8 +108,8 @@ function App() {
     let result = null;
     if (searchResults !== undefined) {
         result = searchResults.map((item,index) => (
-          lat = item.latitude,
-          long = item.longitude,
+          setLatPos(item.latitude),
+          setLongPos(item.longitude),
           city = item.name,
             <div key={index} className='list-group-item list-group-item-dark'>
               <p>country: <span>{`${item.country}`}</span> continent: <span>{item.continent}</span></p> 
@@ -135,8 +146,8 @@ function App() {
         click={handleClick}>
       </Choose>
       <Weather 
-        data={lat !== 0?weather:undefined} 
-        dataDaily={lat !== 0?dailyWeather:undefined}
+        data={latPos !== 0?weather:undefined} 
+        dataDaily={latPos !== 0?dailyWeather:undefined}
         city={city} 
         isActive={isActive}/>
         <footer></footer>
