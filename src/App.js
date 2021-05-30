@@ -16,26 +16,26 @@ function App() {
   const [isActive, setIsActive] = useState(false);
   const [isError, setIsError] = useState(false);
   const [error, setError] = useState();
-  const [latPos, setLatPos] = useState();
-  const [longPos, setLongPos] = useState();
+  // const [latPos, setLatPos] = useState();
+  // const [longPos, setLongPos] = useState();
 
-  // let lat = 0;
-  // let long = 0;
+  let lat = 0;
+  let long = 0;
   let city = '';
 
-  useEffect(() => {
-    navigator.geolocation.getCurrentPosition((position)=> {
-      setLatPos(position.coords.latitude);
-      setLongPos(position.coords.longitude);
+  // useEffect(() => {
+  //   navigator.geolocation.getCurrentPosition((position)=> {
+  //     setLatPos(position.coords.latitude);
+  //     setLongPos(position.coords.longitude);
 
-  })
+  // })
   
-  },[]);
+  // },[]);
     
   
 
   useEffect(() => {
-    const API = `https://api.climacell.co/v3/weather/nowcast?lat=${latPos}&lon=${longPos}&unit_system=si&timestep=60&start_time=now&fields=cloud_cover&fields=precipitation&fields=weather_code&fields=baro_pressure&fields=wind_speed&fields=humidity&fields=temp&apikey=8BB99d2Fe9dpRTWhP16ayEEqZlWEQVQo`;
+    const API = `https://api.climacell.co/v3/weather/nowcast?lat=${lat}&lon=${long}&unit_system=si&timestep=60&start_time=now&fields=cloud_cover&fields=precipitation&fields=weather_code&fields=baro_pressure&fields=wind_speed&fields=humidity&fields=temp&apikey=8BB99d2Fe9dpRTWhP16ayEEqZlWEQVQo`;
 
     fetch(API)
     .then(response => {
@@ -47,10 +47,10 @@ function App() {
     .then(response => response.json())
     .then(data => {
       setWeather(data);
-      console.log(data)
+      
     })
 
-    const DAILY = `https://api.climacell.co/v3/weather/forecast/daily?lat=${latPos}&lon=${longPos}&unit_system=si&start_time=now&fields=temp&fields=precipitation&fields=precipitation_probability&fields=sunrise&fields=sunset&fields=weather_code&fields=wind_direction&apikey=8BB99d2Fe9dpRTWhP16ayEEqZlWEQVQo`;
+    const DAILY = `https://api.climacell.co/v3/weather/forecast/daily?lat=${lat}&lon=${long}&unit_system=si&start_time=now&fields=temp&fields=precipitation&fields=precipitation_probability&fields=sunrise&fields=sunset&fields=weather_code&fields=wind_direction&apikey=8BB99d2Fe9dpRTWhP16ayEEqZlWEQVQo`;
 
     fetch(DAILY)
     .then(response => {
@@ -67,7 +67,7 @@ function App() {
 
   }, [cityData])
 
-  console.log(latPos, longPos)
+  // console.log(latPos, longPos)
   const handleSubmit = () => {
     console.log(searchResult)
     if (searchResult === undefined || searchResult === '') {
@@ -108,8 +108,8 @@ function App() {
     let result = null;
     if (searchResults !== undefined) {
         result = searchResults.map((item,index) => (
-          setLatPos(item.latitude),
-          setLongPos(item.longitude),
+          lat = item.latitude,
+          long = item.longitude,
           city = item.name,
             <div key={index} className='list-group-item list-group-item-dark'>
               <p>country: <span>{`${item.country}`}</span> continent: <span>{item.continent}</span></p> 
@@ -131,7 +131,7 @@ function App() {
   const handleSearch = (e) => {
     setSearchResult(e.target.value);
   }
-  console.log(isActive)
+  
   return (
     <div className="container-fluid">
       <Search 
@@ -146,11 +146,11 @@ function App() {
         click={handleClick}>
       </Choose>
       <Weather 
-        data={latPos !== 0?weather:undefined} 
-        dataDaily={latPos !== 0?dailyWeather:undefined}
+        data={lat !== 0?weather:undefined} 
+        dataDaily={lat !== 0?dailyWeather:undefined}
         city={city} 
         isActive={isActive}/>
-        <footer></footer>
+        <footer>&copy; Copyright 2021 Artur Kosmatka</footer>
     </div>
   );
 }

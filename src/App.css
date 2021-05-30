@@ -110,6 +110,7 @@ button.active {
 
 .accordion {
   width: 90vw;
+  min-height: 69vh;
   margin: 0 auto;
 }
 
@@ -229,7 +230,8 @@ button.active {
   font-size: 14px !important;
 }
 
-.timeItem {
+.timeItem,
+.dateItemDaily {
   width: 146px;
   text-align: right;
 }
@@ -250,6 +252,9 @@ footer {
   background-color: #666;
   margin: 0 auto;
   margin-bottom: 10px;
+  text-align: center;
+  font-size: 12px;
+  color: white;
   border-bottom-left-radius: 5px;
   border-bottom-right-radius: 5px;
 }
@@ -278,7 +283,8 @@ footer {
     margin: 0;
   }
 
-  .timeItem {
+  .timeItem,
+  .dateItemDaily {
     margin-right: 10px;
   }
 }

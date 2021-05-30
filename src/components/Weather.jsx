@@ -137,7 +137,7 @@ const Weather = ({ data, dataDaily, city, isActive }) => {
 
 
 
-    console.log(isActive)
+
     return (
         <div className="accordion accordion-flush" id="accordionFlushExample" key={x++}>
             {!isActive ? result : resultDaily}
