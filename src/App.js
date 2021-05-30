@@ -65,7 +65,7 @@ function App() {
     }else{
       
       setIsError(false);
-      const API = `https://api.positionstack.com/v1/forward?access_key=5904a60050be0602ed8567eba311f76b
+      const API = `http://api.positionstack.com/v1/forward?access_key=5904a60050be0602ed8567eba311f76b
 &query=${searchResult}&limit=1`;
 
     fetch(API)
