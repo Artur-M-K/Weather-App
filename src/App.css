@@ -1,38 +1,394 @@
-.App {
-  text-align: center;
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@200;300;400&display=swap');
+
+body {
+  font-family: 'Montserrat', sans-serif;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.weatherContainer {
+  display: flex;
+  margin: 0 auto;
+  margin-top: 10px;
+  width: 90vw;
+  height: 55px;
+  background-color: #666;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.logo {
+  width: 200px;
+  height: 70px;
+  background-color: black;
+  color: white;
+  font-size: 32px;
+  font-weight: 400;
+  margin-top: -7px;
+  margin-left: 10px;
+  padding: 10px 30px 10px 15px;
+  z-index: 3;
+  transform: skew(-30deg);
+  -webkit-box-shadow: 4px 6px 15px -1px rgba(0, 0, 0, 0.58);
+  box-shadow: 4px 6px 15px -1px rgba(0, 0, 0, 0.58);
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.logo>span {
+  display: block;
+  transform: skew(30deg);
+}
+
+.input {
+  width: 70%;
+  margin-top: 9px;
+  margin-left: 35%;
+  padding-right: 1px;
+}
+
+.btn {
+  background-color: rgb(25, 120, 230);
+  color: white;
+  margin-right: 10px;
+  display: inline-flex;
+}
+
+.btn:hover {
+  background-color: rgb(0, 90, 194);
+}
+
+.resultList {
+  width: 90vw;
+  margin: 0 auto;
+  margin-top: 4px;
+  margin-bottom: 4px;
+}
+
+.choose {
+  width: 92vw;
+  margin: 0 auto;
+  margin-top: -15px;
+  margin-bottom: 10px;
+  display: flex;
+  justify-content: flex-end;
+}
+
+#daily,
+#hourly {
+  width: 70px;
+  height: 20px;
+  background-color: #666;
+  color: white;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 2px;
+  margin-right: 5px;
+  padding: 10px 10px 10px 10px;
+  z-index: 12;
+  transform: skew(-30deg);
+}
+
+#daily>span,
+#hourly>span {
+  display: block;
+  transform: skew(30deg);
+
+}
+
+#daily:hover,
+#hourly:hover {
+  background-color: #000;
+}
+
+button.active {
+  background-color: #000 !important;
+  outline: none;
+  -webkit-box-shadow: 5px 9px 8px -2px rgba(0, 0, 0, 0.56);
+  box-shadow: 5px 9px 8px -2px rgba(0, 0, 0, 0.56);
+}
+
+.weatherFlex {
+  display: block;
+
+}
+
+.accordion {
+  width: 90vw;
+  margin: 0 auto;
+}
+
+.accordion-item {
+  width: 90vw;
+  margin: 0;
+
+}
+
+.accordion-body {
+  width: 90vw;
+  display: flex;
+}
+
+.detailItem {
+  width: 20%;
+  height: 110px;
+  margin: 0 2px;
+  background: rgb(214, 233, 245);
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+
+.detailItem img {
+  width: 50px;
+  height: 50px;
+  margin: 6px 0;
+
+}
+
+.detailItem p {
+  font-size: 18px;
+}
+
+.accordion-button {
+  font-size: 30px;
+  display: flex;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
+}
+
+.accordion-button span {
+  font-size: 20px;
+}
+
+.accordion-button img {
+  width: 40px;
+  height: 40px;
+  margin: 0 20px;
+}
+
+.accordion-button::after {
+  margin: 0;
+}
+
+#tempItem {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: 'Roboto Mono', monospace;
+  width: 70vw;
+  height: 50px;
+}
+
+.tempItem {
+  width: 100px;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.tempItem .tempValue {
+  font-size: 38px;
+  font-family: 'Roboto Mono', monospace;
+  margin: 0 auto;
+
+}
+
+#weatherCode {
+  padding-top: 20px;
+}
+
+.weatherCode {
+  margin-top: 2px;
+  font-size: 11px;
+  text-align: center;
+}
+
+.list-group-item h2 {
+  text-align: center;
+  padding-top: 5px 20px 10px 0;
+  font-size: 34px;
+  font-weight: 500;
+}
+
+.list-group-item p {
+  text-align: right;
+  font-size: 14px;
+  font-weight: 400;
+}
+
+.list-group-item p span {
+  font-size: 24px;
+  font-weight: 200;
+  margin: 0 10px 0 5px;
+}
+
+.dateItem,
+.dateItemDaily,
+.timeItem,
+.cityItem {
+  font-size: 22px;
+  margin: 0 10px;
+}
+
+.units {
+  margin-top: -20px;
+  padding: 0;
+  font-size: 14px !important;
+}
+
+.timeItem {
+  width: 146px;
+  text-align: right;
+}
+
+.accordion-button[aria-expanded="true"] {
+  background-color: #666;
+  border-color: #ff934f !important;
   color: white;
 }
 
-.App-link {
-  color: #61dafb;
+.accordion-button:focus {
+  box-shadow: none;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+footer {
+  width: 90vw;
+  height: 50px;
+  background-color: #666;
+  margin: 0 auto;
+  margin-bottom: 10px;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+}
+
+@media(max-width: 1200px) {
+  #tempItem {
+    width: 80vw;
+
   }
-  to {
-    transform: rotate(360deg);
+}
+
+@media(max-width: 880px) {
+  .input {
+    width: 50vw;
+    margin-left: 20%;
+  }
+
+  .cityItem {
+    font-size: 16px;
+  }
+
+  .dateItem,
+  .dateItemDaily,
+  .timeItem {
+    font-size: 14px;
+    margin: 0;
+  }
+
+  .timeItem {
+    margin-right: 10px;
+  }
+}
+
+@media(max-width: 650px) {
+  .list-group-item h2 {
+    font-size: 24px;
+  }
+
+  #tempItem {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+  }
+
+  .cityItem {
+    font-size: 14px;
+  }
+
+  .dateItem,
+  .dateItemDaily,
+  .timeItem {
+    font-size: 12px;
+    margin: 0;
+  }
+
+  .timeItem {
+    margin-right: 10px;
+  }
+
+  .input {
+    width: 70vw;
+    margin-left: 5%;
+  }
+
+  .btn {
+    margin-right: 5px;
+    width: 60px;
+    font-size: 14px;
+    padding-left: 5px;
+  }
+
+  .detailItem p {
+    font-size: 14px;
+  }
+}
+
+@media(max-width: 540px) {
+
+  .detailItem p {
+    font-size: 12px;
+  }
+
+  .timeItem {
+    margin-right: 10px;
+  }
+}
+
+@media(max-width: 430px) {
+
+  .weatherContainer,
+  .resultList,
+  footer {
+    width: 95vw;
+  }
+
+  .list-group-item h2 {
+    font-size: 20px;
+  }
+
+  .list-group-item p {
+    margin-top: 8px;
+    text-align: right;
+    font-size: 10px;
+  }
+
+  .list-group-item p span {
+    font-size: 12px;
+  }
+
+  .logo {
+    width: 120px;
+    font-size: 16px;
+    line-height: 50px;
+  }
+
+  .d-flex {
+    z-index: 23;
+  }
+
+  .dateItem,
+  .cityItem {
+    display: none;
+  }
+
+  .timeItem,
+  .dateItemDaily {
+    font-size: 16px;
+    margin-right: 10px;
+  }
+
+  .accordion-body {
+    padding: 16px 0;
+  }
+
+  .tempItem .tempValue {
+    font-size: 26px;
+  }
+
+  .detailItem p {
+    font-size: 13px;
   }
 }
