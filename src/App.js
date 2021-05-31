@@ -55,7 +55,6 @@ function App() {
   }, [cityData])
 
   const handleSubmit = () => {
-    console.log(searchResult)
     if (searchResult === undefined || searchResult === '') {
       setError("This field can't be empty!!! , please write a city name");
       setIsError(true);
