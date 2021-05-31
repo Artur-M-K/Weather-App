@@ -55,7 +55,6 @@ function App() {
   }, [cityData])
 
   const handleSubmit = () => {
-    console.log(searchResult)
     if (searchResult === undefined || searchResult === '') {
       setError("This field can't be empty!!! , please write a city name");
       setIsError(true);
@@ -97,7 +96,7 @@ function App() {
           lat = item.latitude,
           long = item.longitude,
           city = item.name,
-            <div key={index} className='list-group-item list-group-item-dark'>
+            <div key={index.toString()} className='list-group-item list-group-item-dark'>
               <p>country: <span>{`${item.country}`}</span> continent: <span>{item.continent}</span></p> 
                 <h2>{`${item.label} / (${item.country_code})`}</h2>
                           
@@ -135,7 +134,8 @@ function App() {
         data={lat !== 0?weather:undefined} 
         dataDaily={lat !== 0?dailyWeather:undefined}
         city={city} 
-        isActive={isActive}/>
+        isActive={isActive}
+      />
         <footer>&copy; Copyright 2021 Artur Kosmatka</footer>
     </div>
   );
