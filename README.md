@@ -22,7 +22,8 @@ Project is created with:
 To run this project, install it locally using npm:
 
 ```
-$ cd ../weather
+$ git clone or downolad zip
+$ cd weather
 $ npm install
 $ npm start
 ```
