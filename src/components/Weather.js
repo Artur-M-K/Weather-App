@@ -1,3 +1,7 @@
+<<<<<<< HEAD:src/components/Weather.js
+=======
+
+>>>>>>> 8b4e563c45c87d61c0354495253a532063dfc472:src/components/Weather.jsx
 import React from 'react';
 import uuid from 'react-uuid';
 
