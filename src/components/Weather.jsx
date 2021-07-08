@@ -6,14 +6,12 @@ const Weather = ({ data, dataDaily, city, isActive }) => {
     const weatherResultDaily = dataDaily;
     let result = null;
     let resultDaily = null;
-    let x = 1;
     const PUBLIC = process.env.PUBLIC_URL;
 
-
     if (weatherResult !== undefined) {
-        result = weatherResult.map((item, index) => (
+        result = weatherResult.map((item,index) => (
             <>
-                <div className="accordion-item" key={index}>
+                <div className="accordion-item" key={item.id}>
                     <h2 className="accordion-header" id={`flush-headingOne${index}`}>
                         <button
                             className="accordion-button collapsed"
@@ -67,14 +65,13 @@ const Weather = ({ data, dataDaily, city, isActive }) => {
                         </div>
                     </div>
                 </div>
-
             </>
         ))
     }
     if (weatherResultDaily !== undefined) {
         resultDaily = weatherResultDaily.map((item, index) => (
             <>
-                <div className="accordion-item" key={index}>
+                <div className="accordion-item" key={item.id}>
                     <h2 className="accordion-header" id={`flush-headingOne${index}`}>
                         <button
                             className="accordion-button collapsed"
@@ -86,7 +83,7 @@ const Weather = ({ data, dataDaily, city, isActive }) => {
                         >
                             <div id='tempItem'>
                                 <div className="tempItem">
-                                    <p className='tempValue'>{Math.round(item.temp.[1].max.value)}&#8451;</p>
+                                    <p className='tempValue'>{Math.round(item.temp[1].max.value)}&#8451;</p>
                                 </div>
                                 <div id='weatherCode'>
                                     <img src={PUBLIC + `/img/${item.weather_code.value}.svg`} alt="" />
@@ -107,14 +104,14 @@ const Weather = ({ data, dataDaily, city, isActive }) => {
                         <div className="accordion-body">
                             <div className='detailItem'>
                                 <img src={PUBLIC + "/img/icon/rain.svg"} alt="" />
-                                <p>{item.precipitation.[0].max.value.toFixed(2)}</p><p className='units'> {item.precipitation.[0].max.units}</p>
+                                <p>{item.precipitation[0].max.value.toFixed(2)}</p><p className='units'> {item.precipitation[0].max.units}</p>
                             </div>
                             <div className='detailItem'>
                                 <img src={PUBLIC + "/img/icon/humidity.svg"} alt="" />
                                 <p>{item.precipitation_probability.value} {item.precipitation_probability.units}</p>
                             </div>
                             <div className='detailItem'>
-                                <img style={{ transform: `rotate(${item.wind_direction.[0].min.value.toFixed()}deg)` }} src={PUBLIC + "/img/icon/arrow.svg"} alt="" />
+                                <img style={{ transform: `rotate(${item.wind_direction[0].min.value.toFixed()}deg)` }} src={PUBLIC + "/img/icon/arrow.svg"} alt="" />
                                 <p>wind</p>
 
                             </div>
@@ -140,7 +137,7 @@ const Weather = ({ data, dataDaily, city, isActive }) => {
 
 
     return (
-        <div className="accordion accordion-flush" id="accordionFlushExample" key={x++}>
+        <div className="accordion accordion-flush" id="accordionFlushExample" >
             {!isActive ? result : resultDaily}
         </div>
     );

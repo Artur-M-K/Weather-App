@@ -52,7 +52,7 @@ function App() {
       
     })
 
-  }, [cityData])
+  }, [cityData])// eslint-disable-line react-hooks/exhaustive-deps
 
   const handleSubmit = () => {
     if (searchResult === undefined || searchResult === '') {
@@ -82,25 +82,24 @@ function App() {
       } else {
         setCityData(data);
       }
-      
-      
+  
       })
     }
   }
     
-
   const searchResults = cityData.data;
     let result = null;
+    
     if (searchResults !== undefined) {
-        result = searchResults.map((item,index) => (
-          lat = item.latitude,
+        result = searchResults.map(item => (
+          (lat = item.latitude,
           long = item.longitude,
           city = item.name,
-            <div key={index} className='list-group-item list-group-item-dark'>
+          
+            <div key={item.id} className='list-group-item list-group-item-dark'>
               <p>country: <span>{`${item.country}`}</span> continent: <span>{item.continent}</span></p> 
-                <h2>{`${item.label} / (${item.country_code})`}</h2>
-                          
-            </div>
+                <h2>{`${item.label} / (${item.country_code})`}</h2>       
+            </div>)
         ));
     } else {
       result = (<div className='list-group-item list-group-item-dark'>
