@@ -1,3 +1,7 @@
+<<<<<<< HEAD
+=======
+
+>>>>>>> refs/remotes/origin/main
 import React from 'react';
 
 const Weather = ({ data, dataDaily, city, isActive }) => {
@@ -133,9 +137,6 @@ const Weather = ({ data, dataDaily, city, isActive }) => {
         ))
     }
 
-
-
-
     return (
         <div className="accordion accordion-flush" id="accordionFlushExample" >
             {!isActive ? result : resultDaily}
@@ -143,4 +144,8 @@ const Weather = ({ data, dataDaily, city, isActive }) => {
     );
 }
 
+<<<<<<< HEAD
 export default Weather;
+=======
+export default Weather;
+>>>>>>> refs/remotes/origin/main
