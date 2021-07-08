@@ -95,8 +95,12 @@ function App() {
           (lat = item.latitude,
           long = item.longitude,
           city = item.name,
+<<<<<<< HEAD
           
             <div key={item.id} className='list-group-item list-group-item-dark'>
+=======
+            <div key={index.toString()} className='list-group-item list-group-item-dark'>
+>>>>>>> 0386277ce758cf09756a772e547f6dd6151b5a74
               <p>country: <span>{`${item.country}`}</span> continent: <span>{item.continent}</span></p> 
                 <h2>{`${item.label} / (${item.country_code})`}</h2>       
             </div>)
@@ -133,7 +137,8 @@ function App() {
         data={lat !== 0?weather:undefined} 
         dataDaily={lat !== 0?dailyWeather:undefined}
         city={city} 
-        isActive={isActive}/>
+        isActive={isActive}
+      />
         <footer>&copy; Copyright 2021 Artur Kosmatka</footer>
     </div>
   );
