@@ -1,8 +1,5 @@
-<<<<<<< HEAD
-=======
-
->>>>>>> refs/remotes/origin/main
 import React from 'react';
+import uuid from 'react-uuid';
 
 const Weather = ({ data, dataDaily, city, isActive }) => {
 
@@ -14,7 +11,7 @@ const Weather = ({ data, dataDaily, city, isActive }) => {
 
     if (weatherResult !== undefined) {
         result = weatherResult.map((item,index) => (
-            <>
+            <React.Fragment key={uuid()}>
                 <div className="accordion-item" key={item.id}>
                     <h2 className="accordion-header" id={`flush-headingOne${index}`}>
                         <button
@@ -69,12 +66,12 @@ const Weather = ({ data, dataDaily, city, isActive }) => {
                         </div>
                     </div>
                 </div>
-            </>
+            </React.Fragment>
         ))
     }
     if (weatherResultDaily !== undefined) {
         resultDaily = weatherResultDaily.map((item, index) => (
-            <>
+            <React.Fragment key={uuid()}>
                 <div className="accordion-item" key={item.id}>
                     <h2 className="accordion-header" id={`flush-headingOne${index}`}>
                         <button
@@ -133,19 +130,15 @@ const Weather = ({ data, dataDaily, city, isActive }) => {
                     </div>
                 </div>
 
-            </>
+            </React.Fragment>
         ))
     }
 
     return (
-        <div className="accordion accordion-flush" id="accordionFlushExample" >
+        <div className="accordion accordion-flush" id="accordionFlushExample">
             {!isActive ? result : resultDaily}
         </div>
     );
 }
 
-<<<<<<< HEAD
 export default Weather;
-=======
-export default Weather;
->>>>>>> refs/remotes/origin/main

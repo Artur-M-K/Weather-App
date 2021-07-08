@@ -1,4 +1,5 @@
 import React, {useEffect, useState} from 'react';
+import uuid from 'react-uuid';
 import './App.css';
 
 import SearchResult from './components/SearchResult';
@@ -96,7 +97,7 @@ function App() {
           long = item.longitude,
           city = item.name,
           
-            <div key={item.id} className='list-group-item list-group-item-dark'>
+            <div key={uuid()} className='list-group-item list-group-item-dark'>
               <p>country: <span>{`${item.country}`}</span> continent: <span>{item.continent}</span></p> 
                 <h2>{`${item.label} / (${item.country_code})`}</h2>       
             </div>)
