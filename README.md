@@ -5,6 +5,8 @@
 * [Technologies](#technologies)
 * [Setup](#setup)
 
+![weather](https://user-images.githubusercontent.com/80982136/128238696-0823d010-6083-4401-a995-9b92ce34eef2.gif)
+
 ## General info
 This project is a responsive weather application. It shows the weather for the selected location for 7 hours / 7 days.
 Data is received from 2 API's: \
